@@ -1,0 +1,22 @@
+/*////////////////////formularios/////////////////////*/
+form{
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 2rem;
+}
+/*////////////////////tabelas/////////////////////*/
+.table-responsive{
+    max-width: 900px;
+    margin: 0 auto;
+    margin-top: 5rem;
+}
+.table thead{
+   background-color: #404E4D;
+   color: #fff;
+}
+.table th, .table td{
+    text-align: center;
+}
