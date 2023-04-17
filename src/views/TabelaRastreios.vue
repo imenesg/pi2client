@@ -2,18 +2,25 @@
 import { ref, onMounted } from 'vue'
 import RastrioRouts from '../apiRoutes/rastreio'
 import { useRouter } from 'vue-router'
+import Loading from '../components/loading.vue'
+
 const router = useRouter()
 const user = ref(null)
 const rastreios = ref(null)
+const isLoading = ref(false)
 user.value = JSON.parse(sessionStorage.getItem('user'))
 async function init() {
+   isLoading.value = true
   rastreios.value = await (await RastrioRouts.show(user.value.uid)).data
+   isLoading.value = false
 }
 onMounted(async () => {
   await init()
 })
 </script>
-<template>
+
+<template> 
+  <Loading v-if="isLoading"></Loading>
   <main>
     <div class="section">
       <h4 class="mt-3 text-center">Rastreios de {{ user.displayName }}</h4>

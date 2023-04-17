@@ -2,13 +2,16 @@
 import { ref, onMounted } from 'vue'
 import RastrioRouts from '../apiRoutes/rastreio'
 import { useRoute } from 'vue-router'
+import Loading from '../components/loading.vue'
 const router = useRoute()
 
 const { codigo } = router.params
 const rastreio = ref(null)
-
+const isLoading = ref(false)
 async function init() {
+  isLoading.value = true
   rastreio.value = await (await RastrioRouts.buscaRastreio(codigo)).data
+  isLoading.value = false
 }
 onMounted(async () => {
   await init()
@@ -22,6 +25,7 @@ function foramtaData(data){
 </script>
 
 <template>
+  <Loading v-if="isLoading"></Loading>
  <main>
     <div class="section">
       <h4 class="mt-3 text-center">Rastreio {{codigo}}</h4>
