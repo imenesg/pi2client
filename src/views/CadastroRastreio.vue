@@ -2,9 +2,11 @@
 import { ref, onMounted } from 'vue'
 import RastrioRouts from '../apiRoutes/rastreio'
 import { useRouter, useRoute } from 'vue-router'
+import Loading from '../components/loading.vue'
 const route = useRoute()
 const { id } = route.params
 const user = ref(null)
+const isLoading = ref(false)
 user.value = JSON.parse(sessionStorage.getItem('user'))
 
 const rastreio = ref(null)
@@ -14,29 +16,35 @@ const apelidoRastreio = ref(null)
 const savedRastreio  = ref(null)
 
 async function newRastreio() {
+   isLoading.value = true
   await RastrioRouts.store({
     uid: JSON.parse(sessionStorage.getItem("user")).uid,
     codigoRastreio: codigoRastreio.value,
     apelidoRastreio : apelidoRastreio.value
   })
+   isLoading.value = false
   router.push('/meus-rastreios')
 }
 
 async function deletRastreio() {
+   isLoading.value = true
    await RastrioRouts.destroy({
     rastreioId: savedRastreio.value.id,
     uid: JSON.parse(sessionStorage.getItem("user")).uid,
   })
+   isLoading.value = false
   router.push('/meus-rastreios')
 }
 
 async function updateRastreio () {
+   isLoading.value = true
   await RastrioRouts.update({
     rastreioId: savedRastreio.value.id,
     uid: JSON.parse(sessionStorage.getItem("user")).uid,
     codigoRastreio: codigoRastreio.value,
     apelidoRastreio: apelidoRastreio.value
   })
+   isLoading.value = false
   router.push('/meus-rastreios')
 }
 
@@ -51,6 +59,7 @@ onMounted(async()=>{
 </script>
 
 <template>
+<Loading v-if="isLoading"></Loading>
   <main>
     <div class="section">
       <form action="">
