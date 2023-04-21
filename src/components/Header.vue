@@ -17,7 +17,7 @@ user.value = JSON.parse(sessionStorage.getItem('user'))
     </button>
     <div v-if="user" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
-        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BucaAI</h5>
+        <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BuscaAI</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
       </div>
       <div class="offcanvas-body">
@@ -26,7 +26,7 @@ user.value = JSON.parse(sessionStorage.getItem('user'))
             <router-link to="/meus-rastreios" class="nav-link" href="#">Meus Rastreios</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/rastreio/novo"  class="nav-link" href="#">Cadastrar Rastrio</router-link>
+            <router-link to="/rastreio/novo"  class="nav-link" href="#">Cadastrar Rastreio</router-link>
           </li>
           <hr>
           <li class="nav-item">
