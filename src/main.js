@@ -2,8 +2,11 @@ import  'bootstrap/dist/css/bootstrap.css'
 import './assets/main.css'
 import './assets/base.css'
 import { createApp} from 'vue'
+import { createPinia } from 'pinia'
 import App from './App.vue'
 import { initializeApp } from "firebase/app";
+
+const pinia = createPinia()
 
 const ENV = import.meta.env
 const firebaseConfig = {
@@ -21,7 +24,8 @@ import router from './router'
 
 const app = createApp(App)
 
-app.use(router)
+app.use(router) 
+app.use(pinia)
 
 app.mount('#app')
 import  'bootstrap/dist/js/bootstrap.js'

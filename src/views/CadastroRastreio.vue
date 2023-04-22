@@ -3,11 +3,13 @@ import { ref, onMounted } from 'vue'
 import RastrioRouts from '../apiRoutes/rastreio'
 import { useRouter, useRoute } from 'vue-router'
 import Loading from '../components/loading.vue'
+import { useUserStore } from '../../stores/userStore'
+const store = useUserStore()
 const route = useRoute()
 const { id } = route.params
 const user = ref(null)
 const isLoading = ref(false)
-user.value = JSON.parse(sessionStorage.getItem('user'))
+user.value = store.user
 
 const rastreio = ref(null)
 const router = useRouter()
@@ -18,7 +20,7 @@ const savedRastreio  = ref(null)
 async function newRastreio() {
    isLoading.value = true
   await RastrioRouts.store({
-    uid: JSON.parse(sessionStorage.getItem("user")).uid,
+    uid: user.value.uid,
     codigoRastreio: codigoRastreio.value,
     apelidoRastreio : apelidoRastreio.value
   })
@@ -30,7 +32,7 @@ async function deletRastreio() {
    isLoading.value = true
    await RastrioRouts.destroy({
     rastreioId: savedRastreio.value.id,
-    uid: JSON.parse(sessionStorage.getItem("user")).uid,
+    uid: user.value.uid,
   })
    isLoading.value = false
   router.push('/meus-rastreios')
@@ -40,7 +42,7 @@ async function updateRastreio () {
    isLoading.value = true
   await RastrioRouts.update({
     rastreioId: savedRastreio.value.id,
-    uid: JSON.parse(sessionStorage.getItem("user")).uid,
+    uid: user.value.uid,
     codigoRastreio: codigoRastreio.value,
     apelidoRastreio: apelidoRastreio.value
   })

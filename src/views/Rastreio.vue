@@ -1,8 +1,9 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import RastrioRouts from '../apiRoutes/rastreio'
-import { useRoute } from 'vue-router'
+import { useRouter, useRoute } from 'vue-router'
 import Loading from '../components/loading.vue'
+const userouter = useRouter()
 const router = useRoute()
 
 const { codigo } = router.params
@@ -27,7 +28,7 @@ function foramtaData(data){
 <template>
   <Loading v-if="isLoading"></Loading>
  <main>
-    <div class="section">
+    <div class="section"> 
       <h4 class="mt-3 text-center">Rastreio {{codigo}}</h4>
       <div class="table-responsive">
         <table class="table table-bordered table-striped table-hover">
@@ -47,6 +48,10 @@ function foramtaData(data){
             </tr>
           </tbody>
         </table>
+      </div>
+
+      <div class="d-flex mt-5">
+        <button class="btn mx-auto btn-info text-white" @click="userouter.push('/meus-rastreios')">Meus rastreios</button>
       </div>
     </div>
   </main>

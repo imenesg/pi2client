@@ -2,13 +2,14 @@
 import { getAuth, signInWithPopup, GoogleAuthProvider, signOut } from 'firebase/auth'
 import { useRouter } from 'vue-router'
 import UserRouts from "../apiRoutes/usuario"
+import { useUserStore } from '../../stores/userStore'
 const router = useRouter()
 const auth = getAuth()
-if (sessionStorage.getItem("user")) {
+const store = useUserStore()
+if (store.user) {
   signOut(auth)
     .then(() => {
-      sessionStorage.removeItem("user");
-      location.reload();
+      store.clearUser()
     })
     .catch((error) => {
       console.log(error)
@@ -25,9 +26,9 @@ function loginWithGoogle() {
       const credential = GoogleAuthProvider.credentialFromResult(result)
       const token = credential.accessToken
       const user = result.user
-      sessionStorage.setItem("user", JSON.stringify(user));
+      store.setUser(user)
       UserRouts.store(user.uid)
-      router.push('/meus-rastreios')
+     router.push('/meus-rastreios')
     })
     .catch((error) => {
       const errorCode = error.code

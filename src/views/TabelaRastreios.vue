@@ -3,12 +3,13 @@ import { ref, onMounted } from 'vue'
 import RastrioRouts from '../apiRoutes/rastreio'
 import { useRouter } from 'vue-router'
 import Loading from '../components/loading.vue'
-
+import { useUserStore } from '../../stores/userStore'
+const store = useUserStore()
 const router = useRouter()
 const user = ref(null)
 const rastreios = ref(null)
 const isLoading = ref(false)
-user.value = JSON.parse(sessionStorage.getItem('user'))
+user.value = store.user
 async function init() {
    isLoading.value = true
   rastreios.value = await (await RastrioRouts.show(user.value.uid)).data

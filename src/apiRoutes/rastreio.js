@@ -4,7 +4,7 @@ const APIrout = ENV.VITE_APIROUTE
 
 const RastrioRouts = {
     store : (rastreioData) =>{
-        axios({
+        return axios({
             method: "post",
             url: `${APIrout}/rastreios`,
             data: {
@@ -23,13 +23,13 @@ const RastrioRouts = {
         return rastreio
     },
     destroy : (rastreioData)=>{
-        axios({
+        return axios({
             method: "delete",
             url: `${APIrout}/rastreios/${rastreioData.rastreioId}?uid=${rastreioData.uid}`,
           });
     },
     update : (rastreioData)=>{
-        axios({
+        return axios({
             method: "put",
             url: `${APIrout}/rastreios/${rastreioData.rastreioId}`,
             data: {
@@ -38,6 +38,7 @@ const RastrioRouts = {
                 rastreio_apelido: rastreioData.apelidoRastreio
             },
           });
+         
     },
     getSavedRastreio:(uid, codigo)=>{
         const rastreio =  axios(`${APIrout}/rastreios/${uid}?codigo=${codigo}`);

@@ -1,8 +1,13 @@
 <script setup>
 import { RouterLink } from 'vue-router'
-import {ref} from 'vue'
+import {ref, onMounted} from 'vue'
+import { useUserStore } from '../../stores/userStore'
+const store = useUserStore()
 const user = ref(null)
-user.value = JSON.parse(sessionStorage.getItem('user'))
+
+onMounted(()=>{
+user.value = store.user
+})
 
 </script>
 
@@ -12,10 +17,10 @@ user.value = JSON.parse(sessionStorage.getItem('user'))
     <router-link to="/" class="navbar-brand" href="#">
                 <img src="../assets/img/logo.png" alt="Bootstrap" width="75" height="75">
     </router-link>
-    <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
+    <button v-if="!!store.user.uid" class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div v-if="user" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+    <div v-if="!!store.user.uid" class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
       <div class="offcanvas-header">
         <h5 class="offcanvas-title" id="offcanvasNavbarLabel">BuscaAI</h5>
         <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
