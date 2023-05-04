@@ -22,3 +22,12 @@ npm run dev
 ```sh
 npm run build
 ```
+Informaçoes adicionais: 
+  No projeto foi utilizado firebase authentication, para a autenticação funcionar você devera configurar as seguintes variáveis no arquivo .env :
+  
+      VITE_APIKEY
+      VITE_AUTHDOMAIN
+      VITE_PROJECTID
+      VITE_STORAGEBUCKET
+      VITE_MESSAGINGSENDERID
+      VITE_APPID
