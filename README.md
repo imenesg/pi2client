@@ -1,35 +1,24 @@
 # PI2
 
-This template should help get you started developing with Vue 3 in Vite.
+Olá esse é o client do projeto buscaai, você encontrara nesse repositório, assets e códigos do front-end da aplicação
 
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
+## Configurando projeto
+1. instale as dependências
 ```sh
 npm install
 ```
+2. Configure o .env com base no arquivo exemplo
 
-### Compile and Hot-Reload for Development
+
+
+### comando para iniciar o pojeto
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
+### comando de build
 
 ```sh
 npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
 ```
